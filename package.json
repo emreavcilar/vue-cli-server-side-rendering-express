@@ -3,45 +3,68 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "cross-env NODE_ENV=development npm run build && cross-env NODE_ENV=development npm-run-all -p start serve:client",
+    "serve:client": "vue-cli-service serve",
+    "build": "npm run build:server -- --silent && npm run build:client -- --no-clean --silent",
+    "build:client": "vue-cli-service build",
+    "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build",
+    "start": "nodemon server",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "axios": "^0.18.0",
+    "babel-runtime": "^6.26.0",
+    "compression": "^1.7.4",
+    "express": "^4.16.4",
+    "express-minify": "^1.0.0",
+    "forwarded": "^0.1.2",
+    "http-proxy-middleware": "^0.19.1",
+    "nodemon": "^1.18.11",
+    "style-loader": "^0.23.1",
+    "vue": "^2.6.10",
+    "vue-meta": "^1.6.0",
+    "vue-router": "^3.0.6",
+    "vue-server-renderer": "^2.6.10",
+    "vuex": "^3.1.0",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
+    "@babel/helper-plugin-utils": "^7.0.0",
     "@vue/cli-plugin-babel": "^3.1.1",
     "@vue/cli-plugin-eslint": "^3.1.1",
     "@vue/cli-service": "^3.1.1",
+    "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.5.21"
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chalk": "^2.4.2",
+    "compression-webpack-plugin": "^2.0.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.15.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "lint-staged": "^8.1.5",
+    "lodash.merge": "^4.6.1",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "portfinder": "^1.0.20",
+    "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "vue-template-compiler": "^2.5.21",
+    "webpack-cli": "^3.3.1",
+    "webpack-node-externals": "^1.7.2"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
     ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
 }
