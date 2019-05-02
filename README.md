@@ -1,5 +1,30 @@
 # vue-cli-server-side-rendering-express
 
+This is a simple vue-cli server side rendering template example. This template mainly includes;
+
+<ul>
+<li>Vue</li>
+<li>Express</li>
+<li>Vuex</li>
+<li>Axios</li>
+<li>nodemon</li>
+</ul>
+
+and some other helper libraries.
+
+Setup
+
+yarn install or npm install
+
+if you are working on your local please run
+
+npm run serve
+
+To check SSR visit: view-source:http://localhost:8000/
+
+Happy Hacking!
+
+
 ## Project setup
 ```
 yarn install
