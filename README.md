@@ -14,11 +14,15 @@ and some other helper libraries.
 
 Setup
 
-yarn install or npm install
+**yarn install or npm install**
 
 if you are working on your local please run
 
-npm run serve
+**npm run serve**
+
+if you are on server please run
+
+**npm start server.js**
 
 To check SSR visit: view-source:http://localhost:8000/
 
